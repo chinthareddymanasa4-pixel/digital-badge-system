@@ -73,7 +73,7 @@ app.add_middleware(
 async def health():
     return {"status": "online", "database": "connected to atlas"}
 
-@app.post("/api/login")
+@app.post("/api/auth/login")
 async def login(data: LoginRequest):
     logger.info(f"Login attempt for: {data.email}")
     

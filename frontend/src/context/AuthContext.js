@@ -40,7 +40,8 @@ export function AuthProvider({ children }) {
 
   const logout = async () => {
     try {
-      await axios.post('https://digital-badge-system.onrender.com/api/auth/login', loginData);
+      // Change this line:
+const response = await axios.post('https://digital-badge-system.onrender.com/api/auth/login', { email, password });
     } catch (error) {
       console.error('Logout error:', error);
     }

@@ -83,7 +83,7 @@ export default function IssueCredentialPage() {
       const response = await credentialsAPI.issue({
         recipient_id: formData.recipient_id,
         template_id: formData.template_id,
-        credential_title: formData.credential_title || undefined,
+        credential_title: formData.credential_title || ,
         issuer_name: formData.issuer_name || undefined,
         expiry_date: formData.expiry_date?.toISOString() || undefined
       });

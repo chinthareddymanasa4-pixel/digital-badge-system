@@ -1,64 +1,23 @@
-import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
-import axios from 'axios';
-
-const AuthContext = createContext(null);
-
-const API_URL = process.env.REACT_APP_BACKEND_URL;
-
-// Configure axios defaults
-axios.defaults.withCredentials = true;
-
-export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null); // null = checking, false = not auth, object = authenticated
-  const [loading, setLoading] = useState(true);
-
-  const checkAuth = useCallback(async () => {
-    try {
-      const response = await axios.get(`${API_URL}/api/auth/me`, {
-        withCredentials: true
-      });
-      setUser(response.data);
-    } catch (error) {
-      setUser(false);
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
-  useEffect(() => {
-    checkAuth();
-  }, [checkAuth]);
-
-  const login = async (email, password) => {
-    const response = await axios.post(`${API_URL}/api/auth/login`, 
-      { email, password },
-      { withCredentials: true }
-    );
-    setUser(response.data);
-    return response.data;
-  };
-
-  const logout = async () => {
-    try {
-      // Change this line:
-const response = await axios.post('https://digital-badge-system.onrender.com/api/auth/login', { email, password });
-    } catch (error) {
-      console.error('Logout error:', error);
-    }
-    setUser(false);
-  };
-
-  return (
-    <AuthContext.Provider value={{ user, loading, login, logout, checkAuth }}>
-      {children}
-    </AuthContext.Provider>
-  );
-}
-
-export function useAuth() {
-  const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
+// 1. THE LOGIN FUNCTION (Fix this one)
+const login = async (email, password) => {
+  // Use the full URL here so Vercel doesn't say "undefined"
+  const response = await axios.post('https://digital-badge-system.onrender.com/api/auth/login', { 
+    email, 
+    password 
+  });
+  
+  if (response.data.user) {
+    setUser(response.data.user);
+    localStorage.setItem('user', JSON.stringify(response.data.user));
   }
-  return context;
-}
+  return response.data;
+};
+
+// 2. THE LOGOUT FUNCTION (Clean this one)
+const logout = () => {
+  // REMOVE the axios.post line from here if you added it earlier!
+  setUser(null);
+  localStorage.removeItem('user');
+};
+  }
+};

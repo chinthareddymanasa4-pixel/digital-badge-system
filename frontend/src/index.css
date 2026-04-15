@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,700,800&f[]=satoshi@400,500,700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #FFFFFF;
+  --surface: #F8F9FA;
+  --surface-hover: #F1F5F9;
+  --primary: #2A1B38;
+  --primary-hover: #1E1030;
+  --accent: #5B21B6;
+  --accent-hover: #4C1D95;
+  --text-primary: #0F0A18;
+  --text-secondary: #52525B;
+  --border: #E2E8F0;
+  --success: #059669;
+  --success-bg: #D1FAE5;
+  --error: #E11D48;
+  --error-bg: #FFE4E6;
+}
+
+body {
+  margin: 0;
+  font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--background);
+  color: var(--text-primary);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cabinet Grotesk', sans-serif;
+}
+
+.font-certificate {
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.font-heading {
+  font-family: 'Cabinet Grotesk', sans-serif;
+}
+
+.font-body {
+  font-family: 'Satoshi', sans-serif;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 270 38% 7%;
+    --card: 0 0% 100%;
+    --card-foreground: 270 38% 7%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 270 38% 7%;
+    --primary: 270 38% 16%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 20% 96%;
+    --secondary-foreground: 270 38% 16%;
+    --muted: 210 20% 96%;
+    --muted-foreground: 240 4% 46%;
+    --accent: 262 83% 42%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 347 77% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 262 83% 42%;
+    --radius: 0.25rem;
+    --chart-1: 262 83% 42%;
+    --chart-2: 160 84% 39%;
+    --chart-3: 270 38% 16%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+  }
+}
+
+/* Button hover improvements */
+button:hover, 
+[role="button"]:hover,
+a[class*="button"]:hover {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Outline/Ghost button hover - add visible background */
+button[class*="outline"]:hover,
+button[class*="ghost"]:hover,
+button[class*="variant-outline"]:hover,
+button[class*="variant-ghost"]:hover {
+  background-color: #F1F5F9 !important;
+  border-color: #5B21B6 !important;
+}
+
+/* Dialog/Modal background */
+[role="dialog"],
+[data-state="open"][class*="DialogContent"],
+.dialog-content,
+div[class*="DialogContent"] {
+  background-color: #FFFFFF !important;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* Animation classes */
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.4s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Glassmorphism effect */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Certificate styling */
+.certificate-preview {
+  background: linear-gradient(135deg, #FFFFFF 0%, #F8F9FA 100%);
+  border: 2px solid rgba(42, 27, 56, 0.1);
+  box-shadow: 0 8px 32px rgba(42, 27, 56, 0.08);
+}
+
+/* Hero gradient overlay */
+.hero-gradient {
+  background: linear-gradient(135deg, rgba(42, 27, 56, 0.9) 0%, rgba(91, 33, 182, 0.8) 100%);
+}
+
+/* Table row hover */
+.table-row-hover:hover {
+  background-color: var(--surface-hover);
+}
+
+
